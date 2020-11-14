@@ -11,7 +11,8 @@
             </button>
             <input type="hidden" name="file-name" class="file-name" value=""/>
             <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' name="file" accept=".xlsx, .xls"  onchange="readURL(this);"/>
+                <input class="file-upload-input" type='file' name="file" accept=".xlsx, .xls"
+                       onchange="readURL(this);"/>
             </div>
             <div class="file-upload-content">
                 <br>
@@ -50,6 +51,9 @@
                     <a href="/task1/{{ file.slug }}_{{ file.file_name }}">Task 1</a> |
                     <a href="/task2/{{ file.slug }}_{{ file.file_name }}">Task 2</a> |
                     <a href="/task3/{{ file.slug }}_{{ file.file_name }}">Task 3</a>
+{#                    <a id href="#">Task 1</a> |#}
+{#                    <a id="calltask2" href="#">Task 2</a> |#}
+{#                    <a id="calltask3" href="#" onlcick>Task 3</a>#}
                 </td>
 
             </tr>

@@ -67,7 +67,7 @@ def task1_endpoint(request, file_name):
 
     task1(str(file_name))
 
-    return redirect('/')
+    return redirect('/', sucess=True)
 
 # Task 2
 def task2_endpoint(request, file_name):
@@ -77,7 +77,7 @@ def task2_endpoint(request, file_name):
 
     task2(str(file_name))
 
-    return redirect('/')
+    return redirect('/', sucess=True)
 
 # Task 2
 def task3_endpoint(request, file_name):
@@ -87,4 +87,4 @@ def task3_endpoint(request, file_name):
 
     task3(str(file_name))
 
-    return redirect('/')
+    return redirect('/', sucess=True)
