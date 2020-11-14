@@ -2,7 +2,8 @@
 
 Assignment Details: [Elucidata Assignment](https://docs.google.com/document/d/1wqUXBWqtLFiFewj7jbyzLjrQ_B5HMtJpNmab5p94b-M/edit?usp=sharing)  
 Dashboard | File Uplaod 
-![Plan](https://github.com/aritra1999/Elucidata-Asssignment/blob/master/static/AssignmentFiles/dash.png)  |  ![File Upload](https://github.com/aritra1999/Elucidata-Asssignment/blob/master/static/AssignmentFiles/plan.png)
+![File Upload](https://github.com/aritra1999/Elucidata-Asssignment/blob/master/static/AssignmentFiles/plan.png)
+Dashboard | File Upload
 :-------------------------:|:-------------------------:
 ![Dashboard](https://github.com/aritra1999/Elucidata-Asssignment/blob/master/static/AssignmentFiles/dash.png)  |  ![File Upload](https://github.com/aritra1999/Elucidata-Asssignment/blob/master/static/AssignmentFiles/dash_file.png)
 
