@@ -3,6 +3,8 @@ from django.template.defaultfilters import slugify
 
 from .models import File, ProcessLog
 from os import walk
+import string
+import random
 from .utils import (
     log,
     task1,
@@ -15,7 +17,9 @@ def dash_view(request):
     if request.method == "POST":
         file_name = request.POST.get('file-name')
         file = request.FILES.get('file')
-        slug = slugify(file_name)
+        slug = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 7))
+
+        file.name = slug + "_" + file_name
 
         File.objects.create(
             file_name=file_name,
