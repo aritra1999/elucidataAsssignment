@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+
+    <h3>Process Log</h3>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Sl. No.</th>
+            <th scope="col">Source File Name</th>
+            <th scope="col">Files Created</th>
+            <th scope="col">Task</th>
+            <th scope="col">Verdict</th>
+            <th scope="col">Uploaded On</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for process_log in process_logs %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ process_log.source_file }}</td>
+                <td>{{ process_log.file_created }}</td>
+                <td>Task {{ process_log.task }}</td>
+                <td>
+                    {% if process_log.verdict %}
+                        <span class="text-success">Successful</span>
+                    {% else %}
+                        <span class="text-danger">Error</span>
+                    {% endif %}
+                </td>
+                <td>{{ process_log.time_stamp }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

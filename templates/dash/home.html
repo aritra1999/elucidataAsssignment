@@ -1,0 +1,90 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="file-upload">
+        <h3>Upload File</h3>
+        <hr>
+        <form action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
+                File
+            </button>
+            <input type="hidden" name="file-name" class="file-name" value=""/>
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" name="file" type='file' onchange="readURL(this);"/>
+            </div>
+            <div class="file-upload-content">
+                <br>
+                <span class="image-title"></span>
+                <br><br>
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">
+                        Remove
+                    </button>
+                    <button type="submit" class="upload-image">
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Sl. No.</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Uploaded On</th>
+            <th scope="col">Task</th>
+            <th scope="col">Delete File</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ file.file_name }}</td>
+                <td>{{ file.time_stamp }}</td>
+                <td>
+                    <a href="/task1/{{ file.file_name }}">Task 1</a> |
+                    <a href="/task2/{{ file.file_name }}">Task 2</a> |
+                    <a href="/task3/{{ file.file_name }}">Task 3</a>
+                </td>
+                <td><a href="#" class="text-danger">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+
+    <div class="row">
+        <div class="col pl-4 border-left">
+            <h5>Task 1 files. </h5>
+            <hr>
+            {% for task1_file in task1_files %}
+                {{ forloop.counter }}.
+                <a href="media/process1/{{ task1_file }}" download>{{ task1_file|truncatechars:30 }}</a> <br>
+            {% endfor %}
+        </div>
+        <div class="col pl-4 border-left">
+            <h5>Task 2 files. </h5>
+            <hr>
+            {% for task1_file in task2_files %}
+                {{ forloop.counter }}.
+                <a href="media/process2/{{ task1_file }}" download>{{ task1_file|truncatechars:30 }}</a> <br>
+            {% endfor %}
+        </div>
+        <div class="col pl-4 border-left">
+            <h5>Task 3 files. </h5>
+            <hr>
+            {% for task1_file in task3_files %}
+                {{ forloop.counter }}.
+                <a href="media/process3/{{ task1_file }}" download>{{ task1_file|truncatechars:30 }}</a> <br>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'js/file_upload.js' %}"></script>
+{% endblock %}
