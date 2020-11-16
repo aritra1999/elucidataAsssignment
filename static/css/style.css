@@ -131,3 +131,49 @@ html, body {
     cursor: pointer;
 }
 
+.alert {
+  padding: 20px;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.error{
+    background-color: #ff4e2e;
+}
+
+.success{
+    background-color: #4ad369;
+}
+
+.processing{
+    padding: 20px;
+    margin-bottom:15px;
+    background-color: #e8f8ff;
+    border-radius: 4px;
+    border: 1px solid #0085de;
+    color: #05051f;
+
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  float: right;
+  font-size: 22px;
+  line-height: 26px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: #ffe8c7;
+}
+
+.hidden{
+    display: none;
+}
+.task_link{
+    color: #002b5d !important;
+    text-decoration: underline !important;
+}

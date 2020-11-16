@@ -1,7 +1,17 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% block content %}
-
+    <div class="processing hidden" id="processing">
+        Processing . . .
+    </div>
+    <div class="alert error hidden" id="error" >
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div id="message_error"></div>
+    </div>
+    <div class="alert success hidden" id="success">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div id="message_success"></div>
+    </div>
     <div class="file-upload">
         <h3>Upload File</h3>
         <hr>
@@ -48,20 +58,17 @@
                 <td>{{ file.file_name }}</td>
                 <td>{{ file.time_stamp }}</td>
                 <td>
-                    <a href="/task1/{{ file.slug }}_{{ file.file_name }}">Task 1</a> |
-                    <a href="/task2/{{ file.slug }}_{{ file.file_name }}">Task 2</a> |
-                    <a href="/task3/{{ file.slug }}_{{ file.file_name }}">Task 3</a>
-{#                    <a id href="#">Task 1</a> |#}
-{#                    <a id="calltask2" href="#">Task 2</a> |#}
-{#                    <a id="calltask3" href="#" onlcick>Task 3</a>#}
+                    <a class="task_link" onclick="make_api_call('/task1/{{ file.slug }}_{{ file.file_name }}')">Task 1</a> |
+                    <a class="task_link" onclick="make_api_call('/task2/{{ file.slug }}_{{ file.file_name }}')">Task 2</a> |
+                    <a class="task_link" onclick="make_api_call('/task3/{{ file.slug }}_{{ file.file_name }}')">Task 3</a>
                 </td>
 
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <br><br>
-
+    <button class="btn btn-sm btn-outline-success mb-3" onClick="window.location.reload();">Refresh File</button>
+    <hr>
     <div class="row">
         <div class="col pl-4 border-left">
             <h5>Task 1 files. </h5>

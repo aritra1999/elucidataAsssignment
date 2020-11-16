@@ -5,8 +5,18 @@ from .models import ProcessLog
 
 def task1(file_name):
     raw_file_path = "media/raw/" + file_name
-    file = (raw_file_path)
-    data = pds.read_excel(file, sheet_name='Raw Data')
+    file = str(raw_file_path)
+    try:
+        data = pds.read_excel(file, sheet_name='Raw Data')
+    except:
+        log("File Not Found")
+        ProcessLog.objects.create(
+            source_file=file_name,
+            file_created=0,
+            verdict=False,
+            task=1
+        ).save()
+        return ('error', 'File not found!')
 
     child1 = []
     child2 = []
@@ -34,9 +44,9 @@ def task1(file_name):
     child2 = pds.DataFrame(child2)
     child3 = pds.DataFrame(child3)
 
-    child1.to_excel('media/process1/' + file_name + '_child1.xlsx', header=True, index=False)
-    child2.to_excel('media/process1/' + file_name + '_child2.xlsx', header=True, index=False)
-    child3.to_excel('media/process1/' + file_name + '_child3.xlsx', header=True, index=False)
+    child1.to_excel('media/process1/child1_' + file_name , header=True, index=False)
+    child2.to_excel('media/process1/child2_' + file_name , header=True, index=False)
+    child3.to_excel('media/process1/child3_' + file_name , header=True, index=False)
 
     log("Child Datasets Saved")
     ProcessLog.objects.create(
@@ -46,12 +56,24 @@ def task1(file_name):
         task=1
     ).save()
 
+    return ('success', 'Task 1 successful, 3 Child Dataframes created, 3 Files created.')
+
 
 
 def task2(file_name):
     raw_file_path = "media/raw/" + file_name
-    file = (raw_file_path)
-    data = pds.read_excel(file, sheet_name='Raw Data')
+    file = str(raw_file_path)
+    try:
+        data = pds.read_excel(file, sheet_name='Raw Data')
+    except:
+        log("File Not Found")
+        ProcessLog.objects.create(
+            source_file=file_name,
+            file_created=0,
+            verdict=False,
+            task=2
+        ).save()
+        return ('error', 'File not found!')
     log(data.shape)
 
     data_instance = data
@@ -63,7 +85,7 @@ def task2(file_name):
     log("Roundoff Datasets Created")
 
     data_instance.insert(2, "Retention Time Roundoff (min)", retention_time_roundoff)
-    data_instance.to_excel('media/process2/' + file_name + '_roundoff.xlsx', header=True, index=False)
+    data_instance.to_excel('media/process2/roundoff_' + file_name, header=True, index=False)
 
     log("Roundoff Datasets Saved")
     ProcessLog.objects.create(
@@ -73,12 +95,34 @@ def task2(file_name):
         task=2
     ).save()
 
+    return ('success', 'Task 2 successful, 1 Child Dataframes created, 1 Files created.')
+
 
 def task3(file_name):
-    raw_file_path = "media/raw/" + file_name
-    file = str(raw_file_path)
-    data = pds.read_excel(file, sheet_name='Raw Data')
+    roundoff_file_path = "media/process2/roundoff_" + file_name
+    file = str(roundoff_file_path)
+    try:
+        data = pds.read_excel(file)
+    except:
+        log("File Not Found")
+        ProcessLog.objects.create(
+            source_file=file_name,
+            file_created=0,
+            verdict=False,
+            task=3
+        ).save()
+        return ('error', 'File not found!')
     log(data.shape)
+
+    ProcessLog.objects.create(
+        source_file=file_name,
+        file_created=0,
+        verdict=True,
+        task=3
+    ).save()
+
+    return ('success', 'Task 3 successful, 0 Child Dataframes created, 0 Files created.')
+
 
 
 def log(message):

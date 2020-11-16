@@ -1,5 +1,5 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.template.defaultfilters import slugify
 
 from .models import File, ProcessLog
 from os import walk
@@ -65,26 +65,40 @@ def task1_endpoint(request, file_name):
     log("Processing File: " + raw_file_path)
     log("Initiating Task 1")
 
-    task1(str(file_name))
+    verdict, message = task1(str(file_name))
 
-    return redirect('/', sucess=True)
+
+    response = {
+        'verdict': verdict,
+        'message': message
+    }
+
+    return JsonResponse(response)
 
 # Task 2
 def task2_endpoint(request, file_name):
     raw_file_path = "media/raw/" + file_name
     log("Processing File: " + raw_file_path)
     log("Initiating Task 2")
+    verdict, message = task2(str(file_name))
 
-    task2(str(file_name))
+    response = {
+        'verdict': verdict,
+        'message': message
+    }
 
-    return redirect('/', sucess=True)
-
+    return JsonResponse(response)
 # Task 2
 def task3_endpoint(request, file_name):
     raw_file_path = "media/raw/" + file_name
     log("Processing File: " + raw_file_path)
     log("Initiating Task 3")
 
-    task3(str(file_name))
+    verdict, message = task3(str(file_name))
 
-    return redirect('/', sucess=True)
+    response = {
+        'verdict': verdict,
+        'message': message
+    }
+
+    return JsonResponse(response)
