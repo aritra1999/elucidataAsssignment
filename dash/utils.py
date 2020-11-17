@@ -112,7 +112,29 @@ def task3(file_name):
             task=3
         ).save()
         return ('error', 'File not found!')
+
+    mean_dict = {}
+
+    row_number = 0
+
     log(data.shape)
+
+    
+    for row in data['Retention Time Roundoff (min)']:
+        if 0 in mean_dict.keys():
+            mean_dict[row] = ((cal_mean(data.iloc[row_number][4:-1]) + mean_dic[row])/2)
+        else:
+            mean_dict[row] = cal_mean(data.iloc[row_number][4:-1])
+        row_number += 1
+    
+
+
+    final_dataframe = pds.DataFrame({
+        "Retention Time Roundoff (min)": mean_dict.keys(),
+        "Mean": mean_dict.values()
+    })
+    final_dataframe.to_excel('media/process3/mean_' + file_name , header=True, index=False)
+
 
     ProcessLog.objects.create(
         source_file=file_name,
@@ -127,3 +149,14 @@ def task3(file_name):
 
 def log(message):
     print("[ Process LOG ] " + str(message))
+
+
+
+def cal_mean(data_list):
+    len = data_list.shape[0]
+    sum = 0.0
+    for ele in data_list:
+        sum += ele
+    return sum/len;
+
+      

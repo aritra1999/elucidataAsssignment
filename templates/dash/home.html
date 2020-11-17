@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
     <div class="processing hidden" id="processing">
-        Processing . . .
+        <img src="{% static 'img/loading.svg' %} " height="20px" alt="" class="mr-3">
+        Processing . . . 
     </div>
     <div class="alert error hidden" id="error" >
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
