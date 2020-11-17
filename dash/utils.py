@@ -95,7 +95,7 @@ def task2(file_name):
         task=2
     ).save()
 
-    return ('success', 'Task 2 successful, 1 Child Dataframes created, 1 Files created.')
+    return ('success', 'Task 2 successful, 1 Child Dataframes created, 1 File created.')
 
 
 def task3(file_name):
@@ -143,7 +143,7 @@ def task3(file_name):
         task=3
     ).save()
 
-    return ('success', 'Task 3 successful, 0 Child Dataframes created, 0 Files created.')
+    return ('success', 'Task 3 successful, 1 Child Dataframes created, 1 File created.')
 
 
 
